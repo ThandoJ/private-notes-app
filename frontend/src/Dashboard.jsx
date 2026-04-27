@@ -15,7 +15,7 @@ export default function Dashboard() {
   // ================= FETCH NOTES =================
   const fetchNotes = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/notes", {
+      const res = await axios.get("https://private-notes-app-1-6q2h.onrender.com/api/notes", {
         withCredentials: true,
       });
       setNotes(res.data);
@@ -33,7 +33,7 @@ export default function Dashboard() {
     if (!title || !content) return;
 
     await axios.post(
-      "http://localhost:5000/api/notes",
+      "https://private-notes-app-1-6q2h.onrender.com/api/notes",
       { title, content },
       { withCredentials: true }
     );
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
   // ================= DELETE NOTE =================
   const deleteNote = async (id) => {
-    await axios.delete(`http://localhost:5000/api/notes/${id}`, {
+    await axios.delete(`https://private-notes-app-1-6q2h.onrender.com/api/notes/${id}`, {
       withCredentials: true,
     });
     fetchNotes();
@@ -54,7 +54,7 @@ export default function Dashboard() {
   // ================= UPDATE NOTE =================
   const updateNote = async () => {
     await axios.put(
-      `http://localhost:5000/api/notes/${editingNote.id}`,
+      `https://private-notes-app-1-6q2h.onrender.com/api/notes/${editingNote.id}`,
       { title: editTitle, content: editContent },
       { withCredentials: true }
     );
@@ -66,7 +66,7 @@ export default function Dashboard() {
   // ================= LOGOUT =================
   const handleLogout = async () => {
     await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      "https://private-notes-app-1-6q2h.onrender.com/api/auth/logout",
       {},
       { withCredentials: true }
     );

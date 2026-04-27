@@ -16,7 +16,7 @@ export default function Login() {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://private-notes-app-1-6q2h.onrender.com/api/auth/login",
         { email, password },
         { withCredentials: true }
       );
@@ -29,7 +29,7 @@ export default function Login() {
     } catch (err) {
      console.log("FULL ERROR:", err);
   console.log("RESPONSE DATA:", err.response?.data);
-  
+
       alert(err.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);

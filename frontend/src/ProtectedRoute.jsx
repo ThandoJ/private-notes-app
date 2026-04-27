@@ -4,7 +4,7 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await fetch("http://localhost:5000/api/notes", {
+        await fetch("https://private-notes-app-1-6q2h.onrender.com/api/notes", {
           credentials: "include",
         });
       } catch {
