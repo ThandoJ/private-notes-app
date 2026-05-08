@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -50,6 +52,17 @@ export default function Register() {
         >
           Sign Up
         </button>
+
+         <p className="text-sm mt-4 text-center">
+          Already have an account?{" "}
+          <span
+            className="text-blue-500 cursor-pointer"
+            onClick={() => (navigate("/login"))}
+          >
+            Login
+          </span>
+        </p>
+
       </div>
     </div>
   );
