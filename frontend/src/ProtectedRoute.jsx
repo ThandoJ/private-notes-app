@@ -1,19 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
+  const [isAuth, setIsAuth] = useState(null);
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await fetch("https://private-notes-app-1-6q2h.onrender.com/api/notes", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          "https://private-notes-app-1-6q2h.onrender.com/api/auth/check",
+          { credentials: "include" }
+        );
+
+        if (res.ok) {
+          setIsAuth(true);
+        } else {
+          setIsAuth(false);
+        }
       } catch {
-        window.location.href = "/";
+        setIsAuth(false);
       }
     };
 
     checkAuth();
   }, []);
 
-  return children;
+  if (isAuth === null) return <p>Loading...</p>;
+
+  return isAuth ? children : <Navigate to="/login" />;
 }

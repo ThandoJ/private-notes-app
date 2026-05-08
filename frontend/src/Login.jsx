@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -24,7 +26,7 @@ export default function Login() {
       console.log("LOGIN SUCCESS:", res.data);
 
       // Redirect to dashboard
-      window.location.href = "/dashboard";
+    navigate("/dashboard");
 
     } catch (err) {
      console.log("FULL ERROR:", err);
@@ -73,7 +75,7 @@ export default function Login() {
           Don’t have an account?{" "}
           <span
             className="text-blue-500 cursor-pointer"
-            onClick={() => (window.location.href = "/register")}
+            onClick={() => (navigate("/register"))}
           >
             Sign up
           </span>
