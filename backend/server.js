@@ -15,8 +15,10 @@ app.use(cookieParser());
 
 app.use(cors({
  origin: [
-  
-  "https://https://private-notes-app-tau.vercel.app"
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://private-notes-app-tau.vercel.app",
+  "https://private-notes-app-1-6q2h.onrender.com"
 ],
 credentials: true
 }));

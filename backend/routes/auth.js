@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, 
+      secure: true, 
       sameSite: "None",
     });
 
@@ -72,6 +72,22 @@ router.post("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ message: "Logged out" });
+});
+
+// ================= AUTH CHECK =================
+router.get("/check", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ authenticated: false });
+  }
+
+  try {
+    jwt.verify(token, process.env.JWT_SECRET);
+    return res.json({ authenticated: true });
+  } catch {
+    return res.status(401).json({ authenticated: false });
+  }
 });
 
 export default router;
